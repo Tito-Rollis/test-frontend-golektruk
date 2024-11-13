@@ -6,16 +6,16 @@ const Soal1 = () => {
 
     const [isDragged, setIsDragged] = useState(false);
     // 1. Buat kotak dibawah menjadi elemen drag and drop tanpa menggunakan plugin
-    const onMouseDownHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         setOffset({
             x: e.clientX - position.x,
             y: e.clientY - position.y,
         });
         setIsDragged(true);
     };
-    const onMouseLeaveHandler = () => setIsDragged(false);
+    const handleMouseLeave = () => setIsDragged(false);
 
-    const onMouseMoveHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (isDragged) {
             setPosition({ x: e.clientX - offset.x, y: e.clientY - offset.y });
         }
@@ -23,9 +23,9 @@ const Soal1 = () => {
     return (
         <>
             <div
-                onMouseMove={(e) => onMouseMoveHandler(e)}
-                onMouseUp={onMouseLeaveHandler}
-                onMouseDown={(e) => onMouseDownHandler(e)}
+                onMouseMove={(e) => handleMouseMove(e)}
+                onMouseUp={handleMouseLeave}
+                onMouseDown={(e) => handleMouseDown(e)}
                 style={{
                     left: position.x + 'px',
                     top: position.y + 'px',
